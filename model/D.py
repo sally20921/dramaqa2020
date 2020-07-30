@@ -153,6 +153,7 @@ class D(nn.Module):
         #batch size is 16
        
         q_level_logic = features['q_level_logic']
+       
         print("q_level_logic: ", q_level_logic)
         '''
         x_1 = 0
@@ -229,6 +230,9 @@ class D(nn.Module):
         if self.vbb_on:
             e_vbb = features['filtered_person_full']
             vbb_len = features['filtered_person_full_len']
+            
+            #fimage = features['filtered_image']
+            #vmeta_len = features['filtered_image_len']
 
             vp = features['filtered_visual'].view(B, -1, 3)[:,:,0]
             vp = vp.unsqueeze(2).view(B, -1)
@@ -277,7 +281,7 @@ class D(nn.Module):
         #log_a2 = [self.out(u_a[i], m_a[i], a_mask[i])[1] for i in range(5)]
        # concat_a = [torch.cat([ctx, u_ch[i],u_q, u_a[i],  ctx_flag[i]], dim=-1) for i in range(5)]
         concat_a = [torch.cat([ctx, u_q, u_a[i], u_ch[i], ctx_flag[i]], dim=-1) for i in range(5)] 
-        
+        #concat_a = [torch.cat([ctx, u_q, u_a[i], ctx_flag[i], u_ch[i]],dim=-1) for i in range(5)]
         # ctx, u_ch[i], ctx_flag[i],
         # exp_2 : ctx, u_a[i], u_q, ctx_flag[i], u_ch[i]
         maxout = [self.conv_pool(concat_a[i], ctx_l) for i in range(5)]
