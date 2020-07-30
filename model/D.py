@@ -252,12 +252,14 @@ class D(nn.Module):
 
         #out = (x_3)*o_s + (x_3)*o_m + (x_1+x_2)*o_b
         out = o_s + o_m + o_b
+        #model selects the answer candidate with the largest final output score 
         return out.view(B, -1)
 
        
     def stream_processor(self, classifier, mhattn, ctx_flag, ctx, ctx_l,
                          qa_character, q_embed, q_l, a_embed, a_l):
-
+        # boolean flag f which is true when the speaker or the person in visual metadata appears
+        # in the question and answer pair
         u_q = self.cmat(ctx, ctx_l, q_embed, q_l)
         #print("u_q: ", u_q.shape)
         u_a = [self.cmat(ctx, ctx_l, a_embed[i], a_l[i]) for i in range(5)]
@@ -303,6 +305,10 @@ class D(nn.Module):
 class Conv1d(nn.Module):
     def __init__(self, n_dim, out_dim):
         super().__init__()
+        # apply 1-D convolution filters with various kernel sizes and concatenate them to get 
+        # final representation
+        # applying max-pool over time and linear layer 
+        # we calculate scalar score for each candidate answer 
         out_dim = int(out_dim/4)
         self.conv_k1 = nn.Conv1d(n_dim, out_dim, kernel_size=1, stride=1)
         self.conv_k2 = nn.Conv1d(n_dim, out_dim, kernel_size=2, stride=1)
