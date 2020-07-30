@@ -241,7 +241,7 @@ class C(nn.Module):
         else:
             o_b = 0
 
-        out = o_s + o_m + o_b
+        out = (x_3)*o_s + (x_3)*o_m + (x_1+x_2)*o_b
 
         return out.view(B, -1)
 
