@@ -39,5 +39,20 @@ class CharMatching(nn.Module):
     
   #u_ch = [mhattn(qa_character[i], ctx, ctx_l) for i in range(5)]  
   def forward(self, q, kv, mask_len):
+    # take input stream H_S, H_M, H_B as key K to find parts directly related to the character appearing
+    # in the question and answer. 
+    # q_i as query q
+    # we project the query and each input stream timestep respectively to h hidden projections of d_k dimesions
+    # with h differnet parameter matrices 
+    # then dot product attention is calculated between each input projection and query projection
+    # a_i is the attention score for each timestep of input stream at i-th projection
+    #W_q_i and W_k_i are i-th weight matrices
+    
+    # we expand attention scores and multiply to each projection vector
+    # after concatenating all heads in the second dimension, a linear layer is applied to ensure that 
+    # shape matches the input stream 
+    # as an output of multi-head attention has the same shape as the input stream
+    # add the input and output with normalization
+    
     att_v = kv
     mask, _ = self.len_to_mask(mask_len, mask_len.max())
