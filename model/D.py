@@ -37,7 +37,7 @@ class HighwayEncoder(nn.Module):
       return output
 
 
-class C(nn.Module):
+class D(nn.Module):
     def __init__(self, args, vocab, n_dim, image_dim, layers, dropout, num_choice=5):
         super().__init__()
         print("Model name: Dual Matching Multistream")
