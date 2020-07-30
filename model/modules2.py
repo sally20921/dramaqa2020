@@ -7,6 +7,7 @@ from torch.autograd import Variable
 from einops import rearrange 
 
 class ContextMatching(nn.Module):
+  #self.cmat = ContextMatching(n_dim * 3)
   def __init__(self, channel_size):
     super(ContextMatching, self).__init__()
     
@@ -22,7 +23,11 @@ class ContextMatching(nn.Module):
     s.data.masked_fill_(s_mask.data.byte(), -float("inf"))
     return s 
   
+  #u_q = self.cmat(ctx, ctx_l, q_embed, q_l)
+  #u_a = [self.cmat(ctx, ctx_l, a_embed[i], a_l[i] for i in range(5)]
+  #we use 4 heads and 75 dimensions for d_k at multi-head attention layer
 class CharMatching(nn.Module):
+  #self.mhattn_script = CharMatching(4, D, D)
   def __init__(self, heads, hidden, d_model, dropout=0.1):
     super(CharMatching.self).__init__()
     self.mhatt = MHAttn(heads, hidden, d_model, dropout)
@@ -32,7 +37,7 @@ class CharMatching(nn.Module):
     self.dropout2 = nn.Dropout(dropout)
     self.norm2 = Norm(d_model)
     
-    
+  #u_ch = [mhattn(qa_character[i], ctx, ctx_l) for i in range(5)]  
   def forward(self, q, kv, mask_len):
     att_v = kv
     mask, _ = self.len_to_mask(mask_len, mask_len.max())
