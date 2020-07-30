@@ -158,14 +158,17 @@ class C(nn.Module):
         #batch size is 16
         
         q_level_logic = features['q_level_logic']
-        x_1=0, x_2=0, x_3=0, x_4=0
+        x_1=0
+        x_2=0
+        x_3=0
+        x_4=0
         for i in range(16):
           x = q_level_logic[i]
           if x == 1:
             x_1+=1
-          else if x == 2:
+          elif x == 2:
             x_2+=1
-          else if x == 3:
+          elif x == 3:
             x_3+=1
           else:
             x_4+=1

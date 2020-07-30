@@ -1,6 +1,6 @@
 config = {
     'extractor_batch_size': 32, 
-    'model_name': 'c', 
+    'model_name': 'd', 
     'log_path': 'data/log',
     'tokenizer': 'nonword', # 'nltk' # need to check
     'batch_sizes':  (32, 48, 24),
@@ -29,9 +29,9 @@ config = {
     'log_cmd': False,
     'ckpt_path': 'data/ckpt',
     'ckpt_name': None,
-    'max_sentence_len': 30,
-    'max_sub_len': 300,
-    'max_image_len': 100,
+    'max_sentence_len': 100,
+    'max_sub_len': 600,
+    'max_image_len': 200,
     'shuffle': (False, False, False)
 }
 
