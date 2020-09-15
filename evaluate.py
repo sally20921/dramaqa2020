@@ -51,39 +51,6 @@ def get_evaluator(args, model, loss_fn, metrics={}):
             loss, stats = loss_fn(y_pred, target)
 
             vocab = model.vocab
-            '''
-            if sample_count < 100:
-                print('Batch %d: data and prediction from %d to %d' % (sample_count // batch_size, sample_count, sample_count + batch_size - 1))
-                
-                que = net_inputs['que']
-                answers = net_inputs['answers']
-                # visuals = net_inputs['visual']
-                script = net_inputs['filtered_sub']
-                _, pred_idx = y_pred.max(dim=1)
-
-                for i in range(batch_size):
-                    targ = target[i].item()
-                    pred = pred_idx[i].item()
-
-                    ans = ['\tans %d: ' % j + ' '.join(indices_to_words(answers[i][j], vocab)) for j in range(5)]
-                    if targ != pred:
-                        ans[targ] = colored(ans[targ], 'green')
-                        ans[pred] = colored(ans[pred], 'red')
-
-                    print('QA', sample_count)
-                    print('\tque:', *indices_to_words(que[i], vocab))
-                    print('script:', *indices_to_words(script[i], vocab))
-                    print(*ans, sep='\n')
-                    print('\tcorrect_idx:', targ)
-                    print('\tprediction:', pred)
-                    # print('\tvisual:')
-                    # for vis in visuals[i]:
-                    #     print('\t\tspeaker: %s, behavior: %s, emotion: %s' % visual_to_words(vis, vocab))
-
-                    sample_count += 1
-
-                print()
-            '''
             
             return loss.item(), stats, batch_size, y_pred, target  # TODO: add false_answer metric
 
