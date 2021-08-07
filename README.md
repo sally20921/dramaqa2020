@@ -7,15 +7,12 @@ It supports image loading, feature extraction, feature caching, training framewo
 ## Dataset
 DramaQA dataset is built upon the TV drama `Another Miss Oh` and it contains 16,191 QA pairs from 23,928 various length video clips, with each QA pair belonging to one of four difficulty levels. We provide 217,308 annotated images with rich character-centered visual annotations and coreference resolved scripts. 
 
-- Dataset Overview
-    ![dataset overview](./figures/dramaqa_overview_final.png)
 
 ## Dual Matching Multistream
 Dual Matching Multistream model effectively learns character-centered representations of video to answer questions about the video.
 
-- Model Overview
-    ![model figure](./figures/model_final.png)
 
+   
 
 ## Dependency
 
